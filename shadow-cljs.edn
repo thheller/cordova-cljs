@@ -13,5 +13,7 @@
    :output-dir "MyApp/www/js"
    :asset-path "js"
    :modules {:main {:init-fn demo.app/init}}
-   :devtools {:devtools-url "http://localhost:9630"}
+
+   ;; required since the default document.location is some ms-appx:// url on windows
+   :devtools {:use-document-host false}
    }}}
