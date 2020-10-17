@@ -43,3 +43,30 @@ And finally run the app.
 ```bash
 $ cordova run windows
 ```
+
+## Android
+
+In order for hot code reloading to work on Android you need to do two things:
+
+### Enable clear text traffic.
+
+By default Android will block clear text traffic. You can allow it by adding the following to your `config.xml` file.
+
+```
+<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
+  <application android:usesCleartextTraffic="true" />
+</edit-config>
+```
+
+Note that you might want to disable this in production.
+
+
+### Add devtools-url
+
+Android emulators will not know how to access localhost, so instead you need to
+point it to `10.0.2.2`. You can do this by adjusting the `:devtools`:
+
+```
+:devtools {:use-document-host false
+           :devtools-url "http://10.0.2.2:9630"}
+```
